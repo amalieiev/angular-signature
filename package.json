@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "dev-server": "webpack serve --mode development",
+    "dev-server": "npm run build:dev && webpack serve --mode development",
     "dev": "ng serve --port 44301 --ssl --ssl-key development-certificate.key --ssl-cert development-certificate.crt",
     "build": "ng build && npm run build:dev",
     "build:dev": "webpack --mode development",
@@ -30,6 +30,7 @@
     "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
     "@types/jasmine": "~3.6.0",
+    "@types/jest": "^27.0.1",
     "@types/node": "^12.11.1",
     "@types/office-js": "1.0.201",
     "@types/office-js-preview": "1.0.242",

@@ -19,6 +19,12 @@
     "lib": [
       "es2018",
       "dom"
+    ],
+    "types": [
+      "jasmine",
+      "node",
+      "office-runtime",
+      "office-js-preview"
     ]
   },
   "angularCompilerOptions": {
