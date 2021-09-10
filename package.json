@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev-server": "npm run webpack && webpack serve --mode development",
-    "dev": "ng serve --port 44301 --ssl --ssl-key development-certificate.key --ssl-cert development-certificate.crt",
+    "dev": "ng serve --ssl --ssl-key certificates/localhost.key --ssl-cert certificates/localhost.crt",
     "build": "ng build && npm run webpack",
     "webpack": "webpack --mode development",
     "watch": "ng build --watch --configuration development",
