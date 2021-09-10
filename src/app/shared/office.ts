@@ -47,3 +47,26 @@ export async function setSignatureAsync(signature: string): Promise<void> {
     }
   });
 }
+
+export const getAccessTokenAsync = (
+  options = { allowSignInPrompt: true, allowConsentPrompt: true }
+): Promise<string> =>
+  new Promise<string>((resolve, reject) => {
+    const ACCESS_TOKEN_TIMEOUT = 1000 * 60 * 5; // 5 minutes.
+    const errorMessage =
+      'We were unable to sign you into Microsoft. Click below to try again.';
+    const timeout = setTimeout(() => {
+      reject(errorMessage);
+    }, ACCESS_TOKEN_TIMEOUT);
+
+    (async (): Promise<void> => {
+      try {
+        const accessToken = await OfficeRuntime.auth.getAccessToken(options);
+        clearTimeout(timeout);
+        resolve(accessToken);
+      } catch (error: any) {
+        clearTimeout(timeout);
+        reject(error.message);
+      }
+    })();
+  });

@@ -3,72 +3,41 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 require("dotenv").config();
 
-const urlPlaceholder = "{blobStore}";
-
 module.exports = async (env, options) => {
   return {
     devtool: "source-map",
     entry: {
-      commands: "./src/commands.ts",
+      commands: "./src/commands/commands.ts",
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".html", ".js"],
+      extensions: [".ts"],
     },
     module: {
       rules: [
         {
           test: /\.ts$/,
           exclude: /node_modules/,
-          use: "babel-loader",
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            // Creates `style` nodes from JS strings
-            "style-loader",
-            // Translates CSS into CommonJS
-            "css-loader",
-            // Compiles Sass to CSS
-            "sass-loader",
-          ],
-        },
-        {
-          test: /\.tsx?$/,
-          exclude: /node_modules/,
           use: "ts-loader",
-        },
-        {
-          test: /\.html$/,
-          exclude: /node_modules/,
-          use: "html-loader",
-        },
-        {
-          test: /\.(png|jpg|jpeg|gif)$/,
-          loader: "file-loader",
-          options: {
-            name: "[path][name].[ext]",
-          },
         },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: "commands.html",
-        template: "./src/commands.html",
+        template: "./src/commands/commands.html",
         chunks: ["commands"],
       }),
       new CopyWebpackPlugin({
         patterns: [
           {
             to: "[name][ext]",
-            from: "src/manifest.xml",
+            from: "manifest.xml",
             transform(content) {
               return content
                 .toString()
-                .replace(
-                  new RegExp(urlPlaceholder, "g"),
-                  process.env.URL || "localhost:3000"
-                );
+                .replace(new RegExp("{blobStore}", "g"), process.env.URL)
+                .replace(new RegExp("{apiUrl}", "g"), process.env.API)
+                .replace(new RegExp("{appId}", "g"), process.env.APPID);
             },
           },
         ],

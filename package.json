@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "dev-server": "npm run build:dev && webpack serve --mode development",
+    "dev-server": "npm run webpack && webpack serve --mode development",
     "dev": "ng serve --port 44301 --ssl --ssl-key development-certificate.key --ssl-cert development-certificate.crt",
-    "build": "ng build && npm run build:dev",
-    "build:dev": "webpack --mode development",
+    "build": "ng build && npm run webpack",
+    "webpack": "webpack --mode development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

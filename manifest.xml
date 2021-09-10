@@ -4,8 +4,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>signature</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Signature Cloud"/>
-  <Description DefaultValue="View and insert signatures based on your Cloud Signatures subscription."/>
+  <DisplayName DefaultValue="Signature Angular"/>
+  <Description DefaultValue="View and insert signatures based on your Angular Signatures subscription."/>
   <IconUrl DefaultValue="https://{blobStore}/assets/logo.png"/>
   <HighResolutionIconUrl DefaultValue="https://{blobStore}/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.signature.com/support/"/>
@@ -98,12 +98,20 @@
         </bt:Urls>
         <bt:ShortStrings>
           <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-          <bt:String id="TaskpaneButton.Label" DefaultValue="Show Cloud Signatures"/>
+          <bt:String id="TaskpaneButton.Label" DefaultValue="Show Angular Signatures"/>
         </bt:ShortStrings>
         <bt:LongStrings>
-          <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show the list of Cloud Signatures available"/>
+          <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show the list of Angular Signatures available"/>
         </bt:LongStrings>
       </Resources>
+
+      <WebApplicationInfo>
+        <Id>{appId}</Id>
+        <Resource>api://{apiUrl}/{appId}</Resource>
+        <Scopes>
+          <Scope>User.Read</Scope>
+        </Scopes>
+      </WebApplicationInfo>
     </VersionOverrides>
   </VersionOverrides>
 </OfficeApp>
